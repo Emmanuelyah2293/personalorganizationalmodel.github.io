@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Organization Model (POM)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #4CAF50;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    textarea, input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .output {
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Personal Organization Model (POM)</h1>
+    <p>Organize your goals, tasks, and feedback effectively.</p>
+  </header>
+  <div class="container">
+    <h2>System 1: Daily Operations</h2>
+    <label for="tasks">Enter your prioritized tasks for today:</label>
+    <textarea id="tasks" placeholder="E.g., Complete project report, go to the gym"></textarea>
 
+    <label for="timeBlocks">Describe your time blocks:</label>
+    <textarea id="timeBlocks" placeholder="E.g., Work: 9 AM - 12 PM, Exercise: 6 PM"></textarea>
+
+    <label for="dailyReview">Daily Reflection:</label>
+    <textarea id="dailyReview" placeholder="What went well today? What could be improved?"></textarea>
+
+    <button onclick="saveSystem1()">Save System 1 Details</button>
+
+    <h2>System 4: Learning and Adaptation</h2>
+    <label for="longTermGoals">Enter your long-term goals:</label>
+    <textarea id="longTermGoals" placeholder="E.g., Learn a new skill, improve physical fitness"></textarea>
+
+    <label for="learningAreas">Identify learning areas:</label>
+    <textarea id="learningAreas" placeholder="E.g., Skill-building, reading, education"></textarea>
+
+    <label for="feedback">Feedback from others (peers, mentors):</label>
+    <textarea id="feedback" placeholder="E.g., Suggestions, insights"></textarea>
+
+    <button onclick="saveSystem4()">Save System 4 Details</button>
+
+    <h2>Your Saved Data</h2>
+    <div id="output" class="output">No data saved yet.</div>
+  </div>
+
+  <script>
+    const userData = {
+      system1: {},
+      system4: {}
+    };
+
+    function saveSystem1() {
+      const tasks = document.getElementById("tasks").value;
+      const timeBlocks = document.getElementById("timeBlocks").value;
+      const dailyReview = document.getElementById("dailyReview").value;
+
+      userData.system1 = {
+        tasks,
+        timeBlocks,
+        dailyReview
+      };
+
+      updateOutput();
+      alert("System 1 details saved successfully!");
+    }
+
+    function saveSystem4() {
+      const longTermGoals = document.getElementById("longTermGoals").value;
+      const learningAreas = document.getElementById("learningAreas").value;
+      const feedback = document.getElementById("feedback").value;
+
+      userData.system4 = {
+        longTermGoals,
+        learningAreas,
+        feedback
+      };
+
+      updateOutput();
+      alert("System 4 details saved successfully!");
+    }
+
+    function updateOutput() {
+      const outputDiv = document.getElementById("output");
+      outputDiv.textContent = JSON.stringify(userData, null, 2);
+    }
+  </script>
+</body>
+</html>
